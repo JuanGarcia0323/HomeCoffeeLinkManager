@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Animation from "./Animation";
 const Button = ({
   children,
@@ -34,24 +34,48 @@ const Button = ({
 };
 
 const Hat = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
+  const [filling, setFilling] = useState(true);
+  useEffect(() => {
+    if (!show) {
+      return;
+    }
+    setTimeout(() => {
+      setFilling(false);
+    }, 4100);
+  }, [show]);
+
   return (
     <Animation
-      // hideAnimation="bottom-0 bg-coffee opacity-0"
       hideAnimation=""
-      showAnimation="hover:scale-90 hover:bg-coffee "
-      className="w-[80%] bottom-[85%] absolute z-50 shadow-xl bg-orange-500 rounded-xl text-xl lg:text-2xl text-white-coffee tracking-wider "
+      showAnimation="hover:scale-90  "
+      className="w-[80%] absolute -top-5 z-50 flex flex-col items-center"
       show={!show}
     >
       <div
-        className=" flex w-full min-h-20 h-full items-center justify-around cursor-pointer"
+        className=" flex w-full min-h-20 h-full items-center justify-around cursor-pointer bg-orange-500 shadow-xl  rounded-xl text-xl lg:text-2xl text-white-coffee tracking-wider hover:bg-coffee transition-all duration-300 ease-in-out"
         onClick={onClick}
       >
         <div className="w-4 h-4 rounded-full bg-white-coffee"></div>
         <div className="w-4 h-4 rounded-full bg-white-coffee z-50"></div>
-        <button>{show ? "Lleno" : "Llenar?"}</button>
+        <button>
+          {show ? (filling ? "Llenando..." : "Lleno") : "Llenar?"}
+        </button>
         <div className="w-4 h-4 rounded-full bg-white-coffee"></div>
         <div className="w-4 h-4 rounded-full bg-white-coffee"></div>
       </div>
+      <div className="w-40 h-6 rounded-b-xl bg-white-coffee"></div>
+      <Animation
+        className="absolute w-5 bg-coffee left-[151px] top-[104px] rounded-b-full z-50 duration-500"
+        hideAnimation="h-2"
+        showAnimation="h-96"
+        show={filling && show}
+      />
+      <Animation
+        className="absolute w-5 bg-coffee left-52 top-[104px] rounded-b-full z-50 duration-500"
+        hideAnimation="h-2"
+        showAnimation="h-96"
+        show={filling && show}
+      />
     </Animation>
   );
 };
@@ -61,8 +85,8 @@ function App() {
 
   return (
     <div className="flex mobile-h-screen w-screen items-center justify-center background">
-      <div className="relative w-4/5 lg:w-1/4 h-2/4 lg:h-2/5 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
-        <Hat show={fill} onClick={() => setFill(true)}></Hat>
+      <div className="relative w-4/5 lg:w-1/4 h-2/4 lg:h-2/5 pt-32 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
+        <Hat show={fill} onClick={() => setFill(true)} />
         <Button to="#" className="bg-white/50 hover:bg-orange-500" show={fill}>
           Quejas o Recomendaciones?
         </Button>

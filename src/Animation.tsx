@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 
 interface AnimationProps {
   show: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   showAnimation?: string;
-  hideAnimation: string;
+  hideAnimation?: string;
 }
 const Animation = ({
   children,
