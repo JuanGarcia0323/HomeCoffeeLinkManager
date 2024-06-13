@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import Animation from "./Animation";
+const WhatsAppBlocked = () =>
+  toast("WhatsApp pronto disponible...", { icon: "🤫" });
 const Button = ({
   children,
   className,
@@ -8,6 +11,7 @@ const Button = ({
   show,
   to,
   disable,
+  onClick,
 }: {
   children: string;
   to: string;
@@ -16,10 +20,12 @@ const Button = ({
   className?: string;
   show?: boolean;
   disable?: string;
+  onClick?: () => void;
   /**Expects a message that will be show when the element is disable */
 }) => {
   return (
     <Animation
+      onClick={onClick}
       hideAnimation={`opacity-0 w-0 text-transparent ${hideAnimation}`}
       showAnimation={`z-50 w-full delay-0 ${showAnimation}`}
       className={`font-normal h-20 text-white text-xl  lg:text-2xl tracking-wider rounded ${
@@ -79,13 +85,13 @@ const Hat = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
         <Animation
           className="absolute top-6 left-8 w-5 bg-coffee  rounded-b-full z-50 duration-500"
           hideAnimation="h-2"
-          showAnimation="h-96"
+          showAnimation="h-screen"
           show={filling && show}
         />
         <Animation
           className="absolute top-6 right-8 w-5 bg-coffee  rounded-b-full z-50 duration-500"
           hideAnimation="h-2"
-          showAnimation="h-96"
+          showAnimation="h-screen"
           show={filling && show}
         />
       </div>
@@ -93,14 +99,20 @@ const Hat = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
   );
 };
 
+// https://api.whatsapp.com/send/?phone=542657638252&text=Hola%20Juan,%20empecemos%20a%20desarrollar%20juntos%20mi%20siguiente%20proyecto%20de%20sofware&type=phone_number&app_absent=0
+
 function App() {
   const [fill, setFill] = useState(false);
 
   return (
-    <div className="flex mobile-h-screen w-screen items-center justify-center background">
-      <div className="relative w-4/5 lg:w-1/4 h-2/4 lg:h-2/5 pt-32 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
+    <div className="flex flex-col mobile-h-screen w-screen items-center justify-center background">
+      <div className="relative w-[90%] lg:w-1/4 h-[60%] lg:h-2/5 pt-32 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
         <Hat show={fill} onClick={() => setFill(true)} />
-        <Button to="#" className="bg-white/50 hover:bg-orange-500" show={fill}>
+        <Button
+          to="#"
+          className="bg-white/50 hover:bg-orange-500 text-center"
+          show={fill}
+        >
           Quejas o Recomendaciones?
         </Button>
         <Button
@@ -118,6 +130,7 @@ function App() {
           Pedidos Ya
         </Button>
         <Button
+          onClick={WhatsAppBlocked}
           disable={"WhatsApp aun no se encuentra disponible"}
           to="#"
           className="bg-white/20 rounded-b-2xl"
