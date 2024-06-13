@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import { useEffect, useState } from "react";
 import Animation from "./Animation";
 const Button = ({
@@ -95,14 +93,10 @@ const Hat = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
   );
 };
 
->>>>>>> Stashed changes
 function App() {
+  const [fill, setFill] = useState(false);
+
   return (
-<<<<<<< Updated upstream
-    <div className="flex mobile-h-screen w-screen items-center justify-center bg-gradient-to-tr from-orange-600 to bg-orange-400">
-      <div className="bg-amber-900 text-white rounded-md w-3/4 lg:w-2/4 h-1/4 lg:h-3/4 p-8 flex items-center justify-center shadow-lg border-2 border-orange-800 text-xl lg:text-2xl font-thin animate-pulse hover:scale-90 duration-300 ease-in-out cursor-wait">
-        <p className="text-center"> Home Coffee Incoming...</p>
-=======
     <div className="flex mobile-h-screen w-screen items-center justify-center background">
       <div className="relative w-4/5 lg:w-1/4 h-2/4 lg:h-2/5 pt-32 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
         <Hat show={fill} onClick={() => setFill(true)} />
@@ -132,7 +126,6 @@ function App() {
           WhatsApp
         </Button>
         {fill && <div className="coffe-pouring" />}
->>>>>>> Stashed changes
       </div>
     </div>
   );
