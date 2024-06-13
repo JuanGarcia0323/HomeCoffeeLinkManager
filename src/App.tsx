@@ -63,19 +63,20 @@ const Hat = ({ show, onClick }: { show: boolean; onClick: () => void }) => {
         <div className="w-4 h-4 rounded-full bg-white-coffee"></div>
         <div className="w-4 h-4 rounded-full bg-white-coffee"></div>
       </div>
-      <div className="w-40 h-6 rounded-b-xl bg-white-coffee"></div>
-      <Animation
-        className="absolute w-5 bg-coffee left-[40%] top-[104px] rounded-b-full z-50 duration-500"
-        hideAnimation="h-2"
-        showAnimation="h-96"
-        show={filling && show}
-      />
-      <Animation
-        className="absolute w-5 bg-coffee left-[55%] top-[104px] rounded-b-full z-50 duration-500"
-        hideAnimation="h-2"
-        showAnimation="h-96"
-        show={filling && show}
-      />
+      <div className="w-40 h-6 rounded-b-xl bg-white-coffee relative flex">
+        <Animation
+          className="absolute top-6 left-8 w-5 bg-coffee  rounded-b-full z-50 duration-500"
+          hideAnimation="h-2"
+          showAnimation="h-96"
+          show={filling && show}
+        />
+        <Animation
+          className="absolute top-6 right-8 w-5 bg-coffee  rounded-b-full z-50 duration-500"
+          hideAnimation="h-2"
+          showAnimation="h-96"
+          show={filling && show}
+        />
+      </div>
     </Animation>
   );
 };
