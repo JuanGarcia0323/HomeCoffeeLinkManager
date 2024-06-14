@@ -19,6 +19,7 @@ const Button = ({
   to,
   disable,
   onClick,
+  type = "link",
 }: {
   children: string;
   to: string;
@@ -28,6 +29,7 @@ const Button = ({
   show?: boolean;
   disable?: string;
   onClick?: () => void;
+  type?: "link" | "button";
   /**Expects a message that will be show when the element is disable */
 }) => {
   return (
@@ -39,11 +41,17 @@ const Button = ({
         disable
           ? "flex items-center justify-center relative overflow-hidden cursor-not-allowed hover:scale-90 hover:bg-black/50 hover:blur"
           : ""
-      } ${className}`}
+      } 
+     ${
+       type === "button"
+         ? "flex items-center justify-center cursor-pointer"
+         : ""
+     } 
+      ${className}`}
       show={!!show}
       label={disable || ""}
     >
-      {disable ? (
+      {disable || type === "button" ? (
         <p>{children}</p>
       ) : (
         <a
@@ -188,7 +196,7 @@ function App() {
           <>
             <Button
               to="#"
-              disable="Test"
+              type="button"
               className="bg-white/50 hover:bg-orange-500 text-center"
               show={fill}
               onClick={() => {
