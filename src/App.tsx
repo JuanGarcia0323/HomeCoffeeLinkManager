@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-// import { MdQuestionMark } from "react-icons/md";
 import { RiQuestionMark } from "react-icons/ri";
 import { toast } from "react-hot-toast";
 import { ComplainsSchema, ComplainsSchemaType } from "./Validation";
 import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "react-query";
 
 import Animation from "./Animation";
+import axios from "axios";
+// import { useMutateComplain } from "./Queries";
+
+const apiEndpoint = import.meta.env.VITE_API;
 
 const WhatsAppBlocked = () =>
   toast("WhatsApp pronto disponible...", { icon: "🤫" });
@@ -120,9 +124,27 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ComplainsSchemaType>({
     resolver: zodResolver(ComplainsSchema),
     shouldFocusError: false,
+  });
+  const mutation = useMutation({
+    mutationFn: ({ description, email }: ComplainsSchemaType) => {
+      toast.loading("Su mensaje esta siendo registrado");
+      return axios.post(apiEndpoint, { complaint: description, email });
+    },
+    onSuccess: () => {
+      toast.dismiss();
+      toast.success("Su mensaje se registro con exito");
+      reset();
+    },
+    onError: () => {
+      toast.error(
+        "No se pudo registrar su mensaje, intentelo de nuevo mas tarde"
+      );
+      reset();
+    },
   });
 
   const errorHandler: SubmitErrorHandler<ComplainsSchemaType> = () => {
@@ -139,9 +161,8 @@ const Form = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<ComplainsSchemaType> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<ComplainsSchemaType> = (data) =>
+    mutation.mutate(data);
 
   return (
     <>
