@@ -214,7 +214,7 @@ function App() {
           }}
         />
         {showComplains && <Form></Form>}
-        {showComplains || (
+        {fill && (
           <>
             <Button
               to="#"
@@ -226,7 +226,7 @@ function App() {
                 setShowComplains(true);
               }}
             >
-              Quejas o Recomendaciones?
+              Recomendaciones?
             </Button>
             <Button
               to="https://www.instagram.com/homecoffee.vm/"
