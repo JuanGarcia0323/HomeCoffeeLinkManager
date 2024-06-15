@@ -37,7 +37,7 @@ const Button = ({
       onClick={onClick}
       hideAnimation={`opacity-0 w-0 text-transparent ${hideAnimation}`}
       showAnimation={`z-50 w-full delay-0 ${showAnimation}`}
-      className={`font-normal h-20 text-white text-xl  lg:text-2xl tracking-wider rounded ${
+      className={`font-normal min-h-20 text-white text-xl  lg:text-2xl tracking-wider rounded ${
         disable
           ? "flex items-center justify-center relative overflow-hidden cursor-not-allowed hover:scale-90 hover:bg-black/50 hover:blur"
           : ""
@@ -201,9 +201,7 @@ function App() {
               show={fill}
               onClick={() => {
                 setFill(false);
-                setTimeout(() => {
-                  setShowComplains(true);
-                }, 200);
+                setShowComplains(true);
               }}
             >
               Quejas o Recomendaciones?
@@ -233,7 +231,12 @@ function App() {
             </Button>
           </>
         )}
-        {fill && <div className={`coffe-pouring ${showComplains && "h-0"}`} />}
+        <div
+          className={`
+          ${fill && "coffee-pouring"} 
+          ${showComplains && "coffee-leaking"} 
+          `}
+        />
       </div>
     </div>
   );
