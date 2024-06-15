@@ -190,7 +190,8 @@ const Form = () => {
           {...register("description")}
         />
         <button
-          className="w-full bg-white-coffee p-3 rounded-xl shadow-2xl text-orange-500 font-bold text-xl tracking-wider ring-4 ring-orange-500 hover:bg-orange-500 hover:text-white-coffee duration-300 transition-all ease-in-out"
+          disabled={mutation.isLoading}
+          className="w-full bg-white-coffee p-3 rounded-xl shadow-2xl text-orange-500 font-bold text-xl tracking-wider ring-4 ring-orange-500 hover:bg-orange-500 hover:text-white-coffee duration-300 transition-all ease-in-out "
           type="submit"
         >
           Enviar
