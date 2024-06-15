@@ -140,6 +140,7 @@ const Form = () => {
       reset();
     },
     onError: () => {
+      toast.dismiss();
       toast.error(
         "No se pudo registrar su mensaje, intentelo de nuevo mas tarde"
       );
