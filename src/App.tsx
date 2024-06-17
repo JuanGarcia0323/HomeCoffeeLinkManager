@@ -206,7 +206,7 @@ function App() {
   const [showComplains, setShowComplains] = useState(false);
   return (
     <div className="flex flex-col mobile-h-screen w-screen items-center justify-center background">
-      <div className="relative w-[90%] lg:w-1/4 h-[60%] lg:h-2/5 pt-24 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
+      <div className="relative w-[90%] lg:w-1/4 h-[60%] lg:h-2/4 pt-24 overflow-hidden shadow-lg rounded-md rounded-b-3xl flex items-center flex-col bg-white border border-t-0 border-white justify-end gap-2 p-4">
         <Hat
           show={fill}
           onClick={() => {
@@ -216,7 +216,7 @@ function App() {
         />
         {showComplains && <Form></Form>}
         {fill && (
-          <div className="w-full h-full overflow-auto min-h-0 flex flex-col justify-end gap-2 max-h-full">
+          <div className="w-full h-fit overflow-auto min-h-0 grid grid-cols-1 gap-2 ">
             <Button
               to="#"
               type="button"
