@@ -41,7 +41,7 @@ const Button = ({
       onClick={onClick}
       hideAnimation={`opacity-0 w-0 text-transparent ${hideAnimation}`}
       showAnimation={`z-50 w-full delay-0 ${showAnimation}`}
-      className={`font-normal min-h-20 text-white text-xl  lg:text-2xl tracking-wider rounded ${
+      className={`font-normal h-20 shrink-0 text-white text-xl  lg:text-2xl tracking-wider rounded ${
         disable
           ? "flex items-center justify-center relative overflow-hidden cursor-not-allowed hover:scale-90 hover:bg-black/50 hover:blur"
           : ""
@@ -216,7 +216,7 @@ function App() {
         />
         {showComplains && <Form></Form>}
         {fill && (
-          <div className="w-full h-full overflow-auto flex flex-col gap-2 justify-end">
+          <div className="w-full h-full overflow-auto min-h-0 flex flex-col gap-2 max-h-full">
             <Button
               to="#"
               type="button"
