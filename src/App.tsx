@@ -216,7 +216,7 @@ function App() {
         />
         {showComplains && <Form></Form>}
         {fill && (
-          <div className="w-full h-full overflow-auto min-h-0 flex flex-col gap-2 max-h-full">
+          <div className="w-full h-full overflow-auto min-h-0 flex flex-col justify-end gap-2 max-h-full">
             <Button
               to="#"
               type="button"
